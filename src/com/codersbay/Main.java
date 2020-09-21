@@ -10,17 +10,15 @@ public class Main {
             nums[i] = (int) (Math.random() * 100);
         }
 
-        System.out.println(findMaximum(nums));
+        System.out.println("Maximum: " + divide(nums));
 
     }
 
-    private static int findMaximum(int[] nums) {
+    private static int divide(int[] nums) {
 
         if (nums.length == 2) return Math.max(nums[0], nums[1]);
 
         else {
-
-            int max = 0;
 
             int[] left = new int[nums.length / 2];
             int[] right = null;
@@ -32,6 +30,7 @@ public class Main {
             }
 
             for (int i = 0; i < nums.length; i++) {
+
                 if (i < nums.length / 2) {
                     left[i] = nums[i];
                 } else {
@@ -39,17 +38,24 @@ public class Main {
                 }
             }
 
-            for (int i = 0; i < left.length || i < right.length; i++) {
-                if (left[i] > max) {
-                    max = left[i];
-                }
-                if (right[i] > max) {
-                    max = right[i];
-                }
-            }
-
-            return max;
-
+            return getMax(left, right);
         }
+    }
+
+    public static int getMax(int[] left, int[] right) {
+
+        int max = 0;
+
+        for (int i = 0; i < left.length || i < right.length; i++) {
+
+            if (left[i] > max) {
+                max = left[i];
+            }
+            if (right[i] > max) {
+                max = right[i];
+            }
+        }
+
+        return max;
     }
 }
